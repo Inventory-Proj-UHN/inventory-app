@@ -1,26 +1,26 @@
 import { sequelize, DataTypes } from "../db";
 
-const Item = sequelize.define("item", {
+const Item = sequelize.define("Item", {
     name: {
-        type: DataTypes.String,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     description: {
-        type: DataTypes.String,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     price: {
-        type: DataTypes.Number,
+        type: DataTypes.FLOAT,
         allowNull: false,
     },
     category: {
-        type: DataTypes.String,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     image: {
-        type: DataTypes.String,
+        type: DataTypes.STRING,
         allowNull: false,
     },
 });
 
-module.exports = Item;
+module.exports = { Item };
