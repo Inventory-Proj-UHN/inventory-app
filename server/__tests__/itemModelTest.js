@@ -21,4 +21,30 @@ describe("Item model", () => {
         expect(itemTest).toBeInstanceOf(Item);
         expect(itemTest.name).toBe("ItemName");
     });
+
+    test("Can update an Item", async () => {
+        const itemTest = await Item.findByPk(1);
+
+        expect(itemTest.name).toBe("ItemName");
+
+        // Update and save new name in database
+        itemTest.name = "UpdatedItem";
+        await itemTest.save();
+
+        expect(itemTest.name).toBe("UpdatedItem");
+    });
+
+    test("Can delete an Item", async () => {
+        const itemToDelete = await Item.findByPk(1);
+
+        expect(itemToDelete).toBeInstanceOf(Item);
+
+        // Delete item from database
+        await itemToDelete.destroy();
+
+        // Try retrieving item again but will be null because it does
+        // not exist in database anymore.
+        const itemDeleted = await Item.findByPk(1);
+        expect(itemDeleted).toBe(null);
+    });
 });
