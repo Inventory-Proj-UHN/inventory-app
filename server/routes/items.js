@@ -12,6 +12,15 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.get('/:id', async (req, res) => {
+    try {
+        const item = await Item.findByPk(req.params.id);
+        res.json(item);
+      } catch (error) {
+        next(error);
+      }
+});
+
 router.post('/',[
   check("title").not().isEmpty(),
   check("price").not().isEmpty(),
@@ -69,6 +78,8 @@ router.put("/:id", [
   }
   
 })
+
+
 
 
 router.delete("/:id", async (req, res) => {
