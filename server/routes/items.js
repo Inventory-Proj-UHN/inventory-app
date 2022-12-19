@@ -47,19 +47,27 @@ router.put("/:id", [
   check("category").isString(),
   check("image").isString()
 ], async (req, res) => {
-  try {
-    const itemToChange = await Item.findByPk(req.params.id);
-    const updatedItem = await itemToChange.update({
-      name: req.params.name,
-      description: req.params.description,
-      price: req.params.price,
-      category: req.params.category,
-      image: req.params.image
-    })
-    res.json(updatedItem);
-  } catch (error) {
-    res.json(error);
+  const errors = validationResult(req);
+  if(!errors.isEmpty()){
+     res.json({error: errors.array()})
+  } else {
+    try {
+    
+      const itemToChange = await Item.findByPk(req.params.id);
+      const updatedItem = itemToChange.set({
+        title: req.body.title,
+        description: req.body.description,
+        price: req.body.price,
+        category: req.body.category,
+        image: req.body.image
+      })
+      await updatedItem.save();
+      res.json(updatedItem);
+    } catch (error) {
+      res.json(error);
+    }
   }
+  
 })
 
 
