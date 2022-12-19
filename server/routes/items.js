@@ -19,7 +19,7 @@ router.get('/:id', async (req, res) => {
       } catch (error) {
         next(error);
       }
-})
+});
 
 router.post('/',[
   check("title").not().isEmpty(),
