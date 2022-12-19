@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Item } = require("../models/index");
+const { Item } = require("../models/itemModel");
 const { check, validationResult } = require('express-validator');
 
 router.get("/", async (req, res, next) => {
@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/',[
-  check("name").not().isEmpty(),
+  check("title").not().isEmpty(),
   check("price").not().isEmpty(),
   check("price").isFloat(),
   check("description").not().isEmpty(),
@@ -50,7 +50,7 @@ async (req, res, next) => {
   }});
 
 router.put("/:id", [
-  check("name").isString(),
+  check("title").isString(),
   check("description").isString(),
   check("price").isFloat({min: 0}),
   check("category").isString(),
