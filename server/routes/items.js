@@ -69,7 +69,7 @@ router.put("/:id", [
   } catch (error) {
     res.json(error);
   }
-})
+});
 
 
 router.delete("/:id", async (req, res) => {
