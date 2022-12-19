@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Item } = require("../models");
+const { Item } = require("../models/index");
 const { check, validationResult } = require('express-validator');
 
 router.get("/", async (req, res, next) => {
@@ -11,6 +11,15 @@ router.get("/", async (req, res, next) => {
     next(error);
   }
 });
+
+router.get('/:id', async (req, res) => {
+    try {
+        const item = await Item.findByPk(req.params.id);
+        res.json(item);
+      } catch (error) {
+        next(error);
+      }
+})
 
 router.post('/',[
   check("name").not().isEmpty(),
