@@ -38,6 +38,6 @@ router.post('/',[
         } catch(error) {
             next(error);
     }
-    }})
+    }});
 
 module.exports = router;
