@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Item } = require("../models");
+const { Item } = require("../models/itemModel");
 const { check, validationResult } = require('express-validator');
 
 router.get("/", async (req, res, next) => {
