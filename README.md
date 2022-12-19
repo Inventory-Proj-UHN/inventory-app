@@ -1,6 +1,6 @@
 ![logo](https://user-images.githubusercontent.com/44912347/202296600-c5f247d6-9616-49db-88f0-38433429d781.jpg)
 
-# Inventory App from Uri, Hugo and Noel
+# Inventory App
 You are a team of developers for an e-commerce company. The Engineering team  is rebuilding their inventory tracking app from the ground up. Your team has been tasked with creating a Full-Sack (front and back end) RESTful CRUD application to track the items..
 
 ## Getting Started
@@ -51,3 +51,6 @@ Your team should strive to finish at least the first 4 tiers (a CRUD application
 - As a User, I want to add items to a cart and purchase
 - As a User, I want to use the application on a mobile browser
 - As an Admin, I want all Add and Edit item requests to have server-side validations
+
+### Wireframe
+![Wireframe](Wireframe.png)

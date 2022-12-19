@@ -79,9 +79,6 @@ router.put("/:id", [
   
 })
 
-
-
-
 router.delete("/:id", async (req, res) => {
   try {
     const itemToDelete = await Item.findByPk(req.params.id);
