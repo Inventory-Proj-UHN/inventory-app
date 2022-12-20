@@ -4,9 +4,12 @@ import React, { useState, useEffect } from "react";
 import apiURL from "../api";
 
 import { AllItemsView } from "./AllItemsView";
+import { SingleItemView } from "./SingleItemView";
+
 
 export const App = () => {
     const [items, setItems] = useState([]);
+    const [itemData, setItemData] = useState(null);
 
     const fetchItems = async () => {
         const res = await fetch(`${apiURL}/item`);
@@ -20,9 +23,10 @@ export const App = () => {
 
     return (
         <main>
-            <h1>Sauce Store</h1>
+            <h1>Inventory App</h1>
             <h2>All things 🔥</h2>
-            <AllItemsView items={items} />
+            {itemData ? <SingleItemView fetchItems={fetchItems} setItemData={setItemData} itemData={itemData} /> : <AllItemsView setItemData={setItemData} items={items} />}
+            
         </main>
     );
 };
