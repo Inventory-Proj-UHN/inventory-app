@@ -41,7 +41,6 @@ const Form = (props) => {
 
     return (
         <>
-            <button onClick={() => props.setAdd(!props.add)} >Go Back</button>
             <form onSubmit={handleForm}>
                 <input type="text" name="title" placeholder="Title"
                 value={title} onChange={(e) => setTitle(e.target.value)} ></input>
