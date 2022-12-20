@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import apiURL from "../api";
+import { EditForm } from './EditForm';
 
-export function SingleItemView({itemData, setItemData, fetchItems}) {
+export function SingleItemView({itemData, setItemData, fetchItems, setItems, items}) {
+    const [toggleEdit, setToggleEdit] = useState(false);
 
 
-    const handleClick = () => {
+    const handleBackToHomeClick = () => {
         setItemData(null);
+        fetchItems()
     }
 
     const fetchDelete = async (id) => {
@@ -23,9 +26,21 @@ export function SingleItemView({itemData, setItemData, fetchItems}) {
         fetchDelete(e.target.value)
     }
 
+    const handleEditClick = () => {
+        setToggleEdit(!toggleEdit)
+    }
+
+    
 
     return (
         <>
+            <button onClick={handleEditClick} >Edit</button>
+            { toggleEdit 
+                ? 
+               <EditForm setToggleEdit={setToggleEdit} toggleEdit={toggleEdit} itemData={itemData} fetchItems={fetchItems} setItemData={setItemData} setItems={setItems}/>
+            :
+            null
+            }
             <h1>{itemData.title}</h1>
             <p><b>Category:</b> {itemData.category}</p>
             <p><b>Price:</b> {itemData.price}</p>
@@ -33,7 +48,7 @@ export function SingleItemView({itemData, setItemData, fetchItems}) {
             <img id="item-image" src={itemData.image}/>
             <br></br>
             <button onClick={handleDelete} value={itemData.id}>Delete</button>
-            <button onClick={handleClick}>Back to Item List</button>
+            <button onClick={handleBackToHomeClick}>Back to Item List</button>
         </>
     )
 }
